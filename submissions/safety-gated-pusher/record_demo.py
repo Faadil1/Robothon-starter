@@ -214,6 +214,18 @@ def main():
         HOLD["receipt_a_card"],
     )
 
+    # Contact telemetry card -- real measured values from this run's touch
+    # sensor and contact count, not illustrative/placeholder numbers.
+    writer.hold_seconds(
+        make_title_card(
+            ["Contact telemetry (passive sensor)",
+             f"Contact steps: {event_a.get('contact_count', 0)}",
+             f"Peak contact force: {event_a.get('max_contact_force', 0):.1f} N"],
+            subtitle="Logged and signed alongside the verdict",
+        ),
+        2.5,
+    )
+
     # =========================================================
     # SCENARIO B — BLOCK
     # =========================================================

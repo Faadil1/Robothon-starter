@@ -44,6 +44,10 @@
       <joint name="pusher_y" type="slide" axis="0 1 0" range="-1.0 1.0" damping="8.0" />
       <geom name="pusher_geom" type="box" size="0.03 0.03 0.04" rgba="0.15 0.55 1.0 1" mass="2.0"
         contype="2" conaffinity="4" friction="0.02 0.005 0.0001" />
+      <!-- Passive touch-sensor site: matches pusher_geom exactly, used only
+           for read-only contact-force telemetry. No collision, no mass,
+           no effect on dynamics -- purely observational. -->
+      <site name="pusher_touch_site" type="box" size="0.03 0.03 0.04" rgba="0 0 0 0" />
     </body>
 
     <!-- Object: free box, the pushable item -->
@@ -58,4 +62,12 @@
     <position name="act_x" joint="pusher_x" kp="400" />
     <position name="act_y" joint="pusher_y" kp="400" />
   </actuator>
+
+  <!-- Passive telemetry only: reads contact-normal force magnitude at the
+       pusher's touch site. Does not affect control, dynamics, or the
+       safety gate -- read-only observation for Innovation/MuJoCo-Depth
+       telemetry (contact_count, max contact force) surfaced in receipts. -->
+  <sensor>
+    <touch name="pusher_touch" site="pusher_touch_site" />
+  </sensor>
 </mujoco>

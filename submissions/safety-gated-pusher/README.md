@@ -35,7 +35,7 @@ unsafe push being blocked before it can happen.
 | Criterion | How this project addresses it |
 |---|---|
 | **Runnability** | One-command run (`python run.py`), fully deterministic output, exit code 0 on success; tested independently in this build environment and in Google Cloud Shell. |
-| **MuJoCo depth** | Custom MJCF scene with a position-actuated pusher, free-body object dynamics, contact-based pushing (not teleported/scripted motion), and explicit visual hazard/rescue zone geometry — not a stock example scene. |
+| **MuJoCo depth** | Custom MJCF scene with a position-actuated pusher, free-body object dynamics, contact-based pushing (not teleported/scripted motion), a passive touch sensor providing contact-force telemetry, and explicit visual hazard/rescue zone geometry — not a stock example scene. |
 | **Task design** | A safe rescue push vs. an unsafe blocked path: an autonomous agent must judge whether a planned object-delivery trajectory is safe *before* committing to it, mirroring real hazard-avoidance requirements in embodied AI (e.g. warehouse or disaster-response settings where blind execution is unacceptable). |
 | **Control** | Deterministic, closed-loop autonomous position control drives the pusher through a planned waypoint sequence; execution itself is gated by a safety check, not just planned. |
 | **Engineering quality** | Modular separation of concerns: scene (`scene.xml`), planning (`controller.py`), safety policy (`safety_gate.py`), orchestration (`episode_runner.py`), evidence (`receipt_logger.py`) — each independently testable, documented here. |
@@ -68,6 +68,28 @@ The novelty here is not the push task itself, but the fact that the
 robot's decision about whether to act is treated as a first-class,
 auditable artifact, rather than something that only exists implicitly in
 the robot's motion.
+
+### Contact telemetry (passive sensor evidence)
+
+A passive MuJoCo `touch` sensor is attached to the pusher's contact site.
+It does not influence control, the safety gate, or task outcomes in any
+way — it is read-only instrumentation. During each episode, two
+additional values are recorded and **included in the signed receipt**:
+
+- `contact_count` — the number of physics steps during which the pusher
+  was in contact with the object.
+- `max_contact_force` — the peak contact-normal force (in simulated
+  Newtons) measured by the touch sensor during the episode.
+
+For Scenario A (ALLOW), these values are non-zero, reflecting genuine
+sustained contact during the push. For Scenario B (BLOCK), both values
+are exactly zero, because the push is never executed and no contact ever
+occurs — the telemetry itself corroborates the verdict.
+
+Because these two fields are part of the signed payload (not just
+appended unsigned metadata), tampering with either value after the fact
+breaks Ed25519 verification, the same way tampering with the verdict
+does. This was tested directly during development.
 
 ## Human-AI Collaboration
 
@@ -194,10 +216,11 @@ planned path runs through it.
 - [ ] Confirm `demo.mp4` exists, runs ~60-90s, and shows in order: intro
       title card, scene/hazard/rescue zone establishing shots, Scenario A
       (ALLOW) execution and final state, Scenario A receipt verification
-      card, Scenario B (BLOCK) attempt and final state, Scenario B receipt
-      verification card, summary card ("Safe actions execute. Unsafe
-      actions are blocked. Every decision is signed and verifiable."),
-      Human-AI collaboration closing card.
+      card, contact telemetry card (real measured contact count/peak
+      force), Scenario B (BLOCK) attempt and final state, Scenario B
+      receipt verification card, summary card ("Safe actions execute.
+      Unsafe actions are blocked. Every decision is signed and
+      verifiable."), Human-AI collaboration closing card.
 - [ ] Confirm visually: object moves into the green rescue zone in
       Scenario A; object does not move at all in Scenario B.
 - [ ] Do not edit/cut the resulting video — it should be presented as

@@ -39,6 +39,8 @@ SIGNED_FIELDS = [
     "object_start_pos",
     "object_end_pos",
     "timestamp",
+    "contact_count",
+    "max_contact_force",
 ]
 
 

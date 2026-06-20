@@ -64,14 +64,38 @@ def run_episode(scenario_label, target_xy, model=None, data=None, renderer=None,
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
 
+    # Passive contact telemetry (read-only): tracks how many physics steps
+    # registered a pusher-object contact, and the peak touch-sensor force
+    # observed. This does NOT influence control or the safety gate -- it is
+    # pure observation, recorded for evidence/innovation purposes only.
+    contact_steps = 0
+    total_steps = 0
+    max_touch_force = 0.0
+
+    def _record_telemetry():
+        nonlocal contact_steps, total_steps, max_touch_force
+        total_steps += 1
+        if data.ncon > 0:
+            contact_steps += 1
+        touch_val = float(data.sensordata[0]) if model.nsensor > 0 else 0.0
+        if touch_val > max_touch_force:
+            max_touch_force = touch_val
+
     if verdict == "BLOCK":
         # Do NOT execute the push. Settle physics briefly with no pusher
         # motion so the scene is visibly static/unchanged, then record.
+        # (Matches original behavior exactly: physics stepping here only
+        # happens when a frame_collector is attached, e.g. for video
+        # capture. run.py calls without a collector, so no extra stepping
+        # is introduced for the scored run path.)
         if frame_collector is not None:
             for _ in range(60):
                 mujoco.mj_step(model, data)
+                _record_telemetry()
                 frame_collector(model, data, renderer)
         event["object_end_pos"] = [float(object_start[0]), float(object_start[1])]
+        event["contact_count"] = contact_steps
+        event["max_contact_force"] = round(max_touch_force, 6)
         return event, model, data
 
     # ALLOW: execute the planned push waypoints via position actuators
@@ -85,15 +109,19 @@ def run_episode(scenario_label, target_xy, model=None, data=None, renderer=None,
         data.ctrl[act_y_id] = wp[1] - PUSHER_ANCHOR_XY[1]
         for _ in range(20):  # substeps per waypoint for smoother motion
             mujoco.mj_step(model, data)
+            _record_telemetry()
             if frame_collector is not None:
                 frame_collector(model, data, renderer)
 
     # Let physics settle briefly after push completes
     for _ in range(80):
         mujoco.mj_step(model, data)
+        _record_telemetry()
         if frame_collector is not None:
             frame_collector(model, data, renderer)
 
     object_end = data.xpos[object_body_id][:2].copy()
     event["object_end_pos"] = [float(object_end[0]), float(object_end[1])]
+    event["contact_count"] = contact_steps
+    event["max_contact_force"] = round(max_touch_force, 6)
     return event, model, data
