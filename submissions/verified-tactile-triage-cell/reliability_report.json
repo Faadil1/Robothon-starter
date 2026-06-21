@@ -1,0 +1,337 @@
+{
+  "harness": "reliability_harness.py",
+  "production_scene_path": "/home/wdecoded92/verified-tactile-triage/scene.xml",
+  "timestamp": "2026-06-21T21:04:12.655350+00:00",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "scene_load_and_stability",
+      "passed": true,
+      "payload_z": 0.017892244579783795,
+      "nan_detected": false
+    },
+    {
+      "phase": 2,
+      "name": "actuator_validation",
+      "passed": true,
+      "individual_actuators_passed": true,
+      "combined_sequence_passed": true,
+      "stdout_individual": "[PASS] act_wrist_x: target=0.3, measured=0.29990, error=0.00010, within_range=True, oscillating=False, nan=False, payload_disp=0.000000, neutral_return_error=0.00010, touch_L=0.0000, touch_R=0.0000, contacts=[('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom')]\n[PASS] act_wrist_z: target=0.1, measured=0.09767, error=0.00233, within_range=True, oscillating=False, nan=False, payload_disp=0.000000, neutral_return_error=0.00238, touch_L=0.0000, touch_R=0.0000, contacts=[('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom')]\n[PASS] act_wrist_yaw: target=0.3, measured=0.30000, error=0.00000, within_range=True, oscillating=False, nan=False, payload_disp=0.000000, neutral_return_error=0.00000, touch_L=0.0000, touch_R=0.0000, contacts=[('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom')]\n[PASS] act_left_finger: target=-0.012, measured=-0.01200, error=0.00000, within_range=True, oscillating=False, nan=False, payload_disp=0.000000, neutral_return_error=0.00000, touch_L=0.0000, touch_R=0.0000, contacts=[('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom')]\n[PASS] act_right_finger: target=0.012, measured=0.01200, error=0.00000, within_range=True, oscillating=False, nan=False, payload_disp=0.000000, neutral_return_error=0.00000, touch_L=0.0000, touch_R=0.0000, contacts=[('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom'), ('table', 'payload_geom')]\n\nALL INDIVIDUAL ACTUATOR TESTS: PASS\n",
+      "stdout_combined": "=== Combined sequence test ===\nFinal neutral-return errors: {'x': 0.0, 'z': 0.00235, 'yaw': 0.0, 'lf': 0.0, 'rf': 0.0}\nMax error: 0.0023543997224076815\nNaN detected: False\nPayload displacement: 1.0771248649954598e-09\nUnexpected contacts: none\nTouch L/R at end: 0.0 0.0\n\nCOMBINED SEQUENCE TEST: PASS\n"
+    },
+    {
+      "phase": 3,
+      "name": "grasp_5_of_5",
+      "passed": true,
+      "n_pass": 5,
+      "n_total": 5,
+      "trials": [
+        {
+          "offset": [
+            0.0,
+            0.0
+          ],
+          "success": true,
+          "failure_reason": null
+        },
+        {
+          "offset": [
+            0.001,
+            0.0
+          ],
+          "success": true,
+          "failure_reason": null
+        },
+        {
+          "offset": [
+            -0.001,
+            0.0
+          ],
+          "success": true,
+          "failure_reason": null
+        },
+        {
+          "offset": [
+            0.0,
+            0.001
+          ],
+          "success": true,
+          "failure_reason": null
+        },
+        {
+          "offset": [
+            0.0,
+            -0.001
+          ],
+          "success": true,
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "lift_transport_5_of_5",
+      "passed": true,
+      "n_pass": 5,
+      "n_total": 5,
+      "trials": [
+        {
+          "offset": [
+            0.0,
+            0.0
+          ],
+          "success": true,
+          "failure_reason": null,
+          "max_relative_slip_mm": 0.8082
+        },
+        {
+          "offset": [
+            0.001,
+            0.0
+          ],
+          "success": true,
+          "failure_reason": null,
+          "max_relative_slip_mm": 0.8095
+        },
+        {
+          "offset": [
+            -0.001,
+            0.0
+          ],
+          "success": true,
+          "failure_reason": null,
+          "max_relative_slip_mm": 0.8089
+        },
+        {
+          "offset": [
+            0.0,
+            0.001
+          ],
+          "success": true,
+          "failure_reason": null,
+          "max_relative_slip_mm": 0.7705
+        },
+        {
+          "offset": [
+            0.0,
+            -0.001
+          ],
+          "success": true,
+          "failure_reason": null,
+          "max_relative_slip_mm": 0.7705
+        }
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "slip_detection_and_recovery",
+      "passed": true,
+      "negative_controls": {
+        "n_pass": 3,
+        "n_total": 3,
+        "trials": [
+          {
+            "offset": [
+              0.0,
+              0.0
+            ],
+            "false_positive": false,
+            "max_slip_mm": 0.336
+          },
+          {
+            "offset": [
+              0.001,
+              0.0
+            ],
+            "false_positive": false,
+            "max_slip_mm": 0.3365
+          },
+          {
+            "offset": [
+              -0.001,
+              0.0
+            ],
+            "false_positive": false,
+            "max_slip_mm": 0.3365
+          }
+        ]
+      },
+      "injected_recovery": {
+        "n_pass": 3,
+        "n_total": 3,
+        "trials": [
+          {
+            "offset": [
+              0.0,
+              0.0
+            ],
+            "final_state": "RECOVERY_SUCCESS",
+            "detection_latency_steps": 0,
+            "max_slip_mm": 2.9082
+          },
+          {
+            "offset": [
+              0.001,
+              0.0
+            ],
+            "final_state": "RECOVERY_SUCCESS",
+            "detection_latency_steps": 0,
+            "max_slip_mm": 2.9029
+          },
+          {
+            "offset": [
+              -0.001,
+              0.0
+            ],
+            "final_state": "RECOVERY_SUCCESS",
+            "detection_latency_steps": 0,
+            "max_slip_mm": 2.905
+          }
+        ]
+      }
+    },
+    {
+      "phase": 6,
+      "name": "triage_decision_and_placement",
+      "passed": true,
+      "malformed_all_blocked": true,
+      "scenario_a": {
+        "n_pass": 5,
+        "n_total": 5,
+        "trials": [
+          {
+            "offset": [
+              0.0,
+              0.0
+            ],
+            "final_state": "PLACED_SAFE",
+            "contaminated_entered": false
+          },
+          {
+            "offset": [
+              0.001,
+              0.0
+            ],
+            "final_state": "PLACED_SAFE",
+            "contaminated_entered": false
+          },
+          {
+            "offset": [
+              -0.001,
+              0.0
+            ],
+            "final_state": "PLACED_SAFE",
+            "contaminated_entered": false
+          },
+          {
+            "offset": [
+              0.0,
+              0.001
+            ],
+            "final_state": "PLACED_SAFE",
+            "contaminated_entered": false
+          },
+          {
+            "offset": [
+              0.0,
+              -0.001
+            ],
+            "final_state": "PLACED_SAFE",
+            "contaminated_entered": false
+          }
+        ]
+      },
+      "scenario_b": {
+        "n_pass": 5,
+        "n_total": 5,
+        "trials": [
+          {
+            "offset": [
+              0.0,
+              0.0
+            ],
+            "final_state": "BLOCKED_FALLBACK_SAFE",
+            "contaminated_entered": false,
+            "contaminated_released": false
+          },
+          {
+            "offset": [
+              0.001,
+              0.0
+            ],
+            "final_state": "BLOCKED_FALLBACK_SAFE",
+            "contaminated_entered": false,
+            "contaminated_released": false
+          },
+          {
+            "offset": [
+              -0.001,
+              0.0
+            ],
+            "final_state": "BLOCKED_FALLBACK_SAFE",
+            "contaminated_entered": false,
+            "contaminated_released": false
+          },
+          {
+            "offset": [
+              0.0,
+              0.001
+            ],
+            "final_state": "BLOCKED_FALLBACK_SAFE",
+            "contaminated_entered": false,
+            "contaminated_released": false
+          },
+          {
+            "offset": [
+              0.0,
+              -0.001
+            ],
+            "final_state": "BLOCKED_FALLBACK_SAFE",
+            "contaminated_entered": false,
+            "contaminated_released": false
+          }
+        ]
+      }
+    },
+    {
+      "phase": 7,
+      "name": "signed_receipts",
+      "passed": true,
+      "receipts_verified": {
+        "n_ok": 4,
+        "n_total": 4
+      },
+      "tamper_detection": {
+        "n_ok": 6,
+        "n_total": 6,
+        "tests": [
+          {
+            "field": "planning_verdict",
+            "tamper_detected": true
+          },
+          {
+            "field": "displacement_slip_detected",
+            "tamper_detected": true
+          },
+          {
+            "field": "min_force_transport_n",
+            "tamper_detected": true
+          },
+          {
+            "field": "contaminated_zone_release",
+            "tamper_detected": true
+          },
+          {
+            "field": "recovery_outcome",
+            "tamper_detected": true
+          },
+          {
+            "field": "episode_id",
+            "tamper_detected": true
+          }
+        ]
+      }
+    }
+  ],
+  "all_mandatory_gates_passed": true
+}

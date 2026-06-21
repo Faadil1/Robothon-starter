@@ -1,0 +1,417 @@
+{
+  "phase": "Phase 6 - Triage Decision and Placement",
+  "zones": {
+    "safe": {
+      "center": [
+        0.1,
+        0.0
+      ],
+      "half_extent": [
+        0.06,
+        0.06
+      ]
+    },
+    "contaminated": {
+      "center": [
+        -0.54,
+        0.0
+      ],
+      "half_extent": [
+        0.06,
+        0.06
+      ]
+    }
+  },
+  "malformed_input_tests": [
+    {
+      "case": "none",
+      "target": null,
+      "verdict": "BLOCK",
+      "reason": "target_missing"
+    },
+    {
+      "case": "string_tuple",
+      "target": [
+        "a",
+        "b"
+      ],
+      "verdict": "BLOCK",
+      "reason": "target_malformed"
+    },
+    {
+      "case": "nan",
+      "target": [
+        NaN,
+        0.0
+      ],
+      "verdict": "BLOCK",
+      "reason": "target_nan"
+    },
+    {
+      "case": "outside_all_zones",
+      "target": [
+        0.0,
+        0.0
+      ],
+      "verdict": "BLOCK",
+      "reason": "target_outside_all_known_zones"
+    },
+    {
+      "case": "wrong_length",
+      "target": [
+        0.1
+      ],
+      "verdict": "BLOCK",
+      "reason": "target_malformed"
+    },
+    {
+      "case": "inf",
+      "target": [
+        Infinity,
+        0.0
+      ],
+      "verdict": "BLOCK",
+      "reason": "target_outside_all_known_zones"
+    }
+  ],
+  "malformed_input_all_blocked": true,
+  "scenario_a_trials": [
+    {
+      "trial": "scenario_a_0_(0.0, 0.0)",
+      "scenario": "A",
+      "requested_target": [
+        0.1,
+        0.0
+      ],
+      "final_state": "PLACED_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "ALLOW",
+      "planning_reason": "target_inside_safe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09976181923988614,
+        -1.959865897094732e-18
+      ],
+      "final_payload_xy": [
+        0.09976380379585875,
+        -1.6186762726952106e-18
+      ],
+      "placement_error_m": 0.000236,
+      "payload_stability_velocity_mps": 5.5e-07,
+      "min_force_transport_n": [
+        2.8451,
+        2.8451
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_a_1_(0.001, 0.0)",
+      "scenario": "A",
+      "requested_target": [
+        0.1,
+        0.0
+      ],
+      "final_state": "PLACED_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "ALLOW",
+      "planning_reason": "target_inside_safe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.10074675239030681,
+        7.801504455207217e-18
+      ],
+      "final_payload_xy": [
+        0.10074988891143413,
+        6.6847184768320625e-18
+      ],
+      "placement_error_m": 0.00075,
+      "payload_stability_velocity_mps": 8.7e-07,
+      "min_force_transport_n": [
+        2.8451,
+        2.8451
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_a_2_(-0.001, 0.0)",
+      "scenario": "A",
+      "requested_target": [
+        0.1,
+        0.0
+      ],
+      "final_state": "PLACED_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "ALLOW",
+      "planning_reason": "target_inside_safe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09877688284541966,
+        -5.239354423191561e-18
+      ],
+      "final_payload_xy": [
+        0.09877771700017343,
+        -4.334337138573873e-18
+      ],
+      "placement_error_m": 0.001222,
+      "payload_stability_velocity_mps": 2.3e-07,
+      "min_force_transport_n": [
+        2.8451,
+        2.8451
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_a_3_(0.0, 0.001)",
+      "scenario": "A",
+      "requested_target": [
+        0.1,
+        0.0
+      ],
+      "final_state": "PLACED_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "ALLOW",
+      "planning_reason": "target_inside_safe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09964537570531506,
+        0.0008819577854135063
+      ],
+      "final_payload_xy": [
+        0.09965021845163699,
+        0.0008819512670796025
+      ],
+      "placement_error_m": 0.000949,
+      "payload_stability_velocity_mps": 1.35e-06,
+      "min_force_transport_n": [
+        2.8183,
+        2.8199
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_a_4_(0.0, -0.001)",
+      "scenario": "A",
+      "requested_target": [
+        0.1,
+        0.0
+      ],
+      "final_state": "PLACED_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "ALLOW",
+      "planning_reason": "target_inside_safe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09964537570531508,
+        -0.0008819577854135008
+      ],
+      "final_payload_xy": [
+        0.099650218451637,
+        -0.0008819512670795971
+      ],
+      "placement_error_m": 0.000949,
+      "payload_stability_velocity_mps": 1.35e-06,
+      "min_force_transport_n": [
+        2.8199,
+        2.8183
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    }
+  ],
+  "scenario_b_trials": [
+    {
+      "trial": "scenario_b_0_(0.0, 0.0)",
+      "scenario": "B",
+      "requested_target": [
+        -0.54,
+        0.0
+      ],
+      "final_state": "BLOCKED_FALLBACK_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "BLOCK",
+      "planning_reason": "target_inside_unsafe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09976181923988614,
+        -1.959865897094732e-18
+      ],
+      "final_payload_xy": [
+        0.09976380379585875,
+        -1.6186762726952106e-18
+      ],
+      "placement_error_m": 0.000236,
+      "payload_stability_velocity_mps": 5.5e-07,
+      "min_force_transport_n": [
+        2.8451,
+        2.8451
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_b_1_(0.001, 0.0)",
+      "scenario": "B",
+      "requested_target": [
+        -0.54,
+        0.0
+      ],
+      "final_state": "BLOCKED_FALLBACK_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "BLOCK",
+      "planning_reason": "target_inside_unsafe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.10074675239030681,
+        7.801504455207217e-18
+      ],
+      "final_payload_xy": [
+        0.10074988891143413,
+        6.6847184768320625e-18
+      ],
+      "placement_error_m": 0.00075,
+      "payload_stability_velocity_mps": 8.7e-07,
+      "min_force_transport_n": [
+        2.8451,
+        2.8451
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_b_2_(-0.001, 0.0)",
+      "scenario": "B",
+      "requested_target": [
+        -0.54,
+        0.0
+      ],
+      "final_state": "BLOCKED_FALLBACK_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "BLOCK",
+      "planning_reason": "target_inside_unsafe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09877688284541966,
+        -5.239354423191561e-18
+      ],
+      "final_payload_xy": [
+        0.09877771700017343,
+        -4.334337138573873e-18
+      ],
+      "placement_error_m": 0.001222,
+      "payload_stability_velocity_mps": 2.3e-07,
+      "min_force_transport_n": [
+        2.8451,
+        2.8451
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_b_3_(0.0, 0.001)",
+      "scenario": "B",
+      "requested_target": [
+        -0.54,
+        0.0
+      ],
+      "final_state": "BLOCKED_FALLBACK_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "BLOCK",
+      "planning_reason": "target_inside_unsafe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09964537570531506,
+        0.0008819577854135063
+      ],
+      "final_payload_xy": [
+        0.09965021845163699,
+        0.0008819512670796025
+      ],
+      "placement_error_m": 0.000949,
+      "payload_stability_velocity_mps": 1.35e-06,
+      "min_force_transport_n": [
+        2.8183,
+        2.8199
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    },
+    {
+      "trial": "scenario_b_4_(0.0, -0.001)",
+      "scenario": "B",
+      "requested_target": [
+        -0.54,
+        0.0
+      ],
+      "final_state": "BLOCKED_FALLBACK_SAFE",
+      "planning_gate_ran": true,
+      "planning_verdict": "BLOCK",
+      "planning_reason": "target_inside_unsafe_zone",
+      "prerelease_gate_ran": true,
+      "prerelease_verdict": "ALLOW",
+      "actual_release_xy": [
+        0.09964537570531508,
+        -0.0008819577854135008
+      ],
+      "final_payload_xy": [
+        0.099650218451637,
+        -0.0008819512670795971
+      ],
+      "placement_error_m": 0.000949,
+      "payload_stability_velocity_mps": 1.35e-06,
+      "min_force_transport_n": [
+        2.8199,
+        2.8183
+      ],
+      "contaminated_zone_entered": false,
+      "contaminated_zone_release": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "gate_bypassed": false
+    }
+  ],
+  "n_scenario_a_pass": 5,
+  "n_scenario_b_pass": 5,
+  "n_contaminated_entries_total": 0,
+  "n_contaminated_releases_total": 0,
+  "gate_passed": true
+}

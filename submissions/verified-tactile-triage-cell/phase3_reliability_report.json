@@ -1,0 +1,119 @@
+{
+  "phase": "Phase 3 - Bilateral Tactile Grasp",
+  "gate": "5/5 grasp and hold",
+  "trials": [
+    {
+      "trial": "center",
+      "payload_offset_xy": [
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "failure_reason": null,
+      "contact_acquired_step": 72,
+      "left_peak_force": 2.9752,
+      "right_peak_force": 2.9752,
+      "left_steady_force": 2.8658,
+      "right_steady_force": 2.8658,
+      "force_asymmetry": 0.0,
+      "payload_max_displacement_m": 4.5e-05,
+      "actuator_saturated": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "hold_duration_s": 2.2,
+      "physics_min_force_n": 0.545,
+      "target_force_n": 2.8
+    },
+    {
+      "trial": "x_plus_1mm",
+      "payload_offset_xy": [
+        0.001,
+        0.0
+      ],
+      "success": true,
+      "failure_reason": null,
+      "contact_acquired_step": 72,
+      "left_peak_force": 2.9752,
+      "right_peak_force": 2.9752,
+      "left_steady_force": 2.8658,
+      "right_steady_force": 2.8658,
+      "force_asymmetry": 0.0,
+      "payload_max_displacement_m": 4.5e-05,
+      "actuator_saturated": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "hold_duration_s": 2.2,
+      "physics_min_force_n": 0.545,
+      "target_force_n": 2.8
+    },
+    {
+      "trial": "x_minus_1mm",
+      "payload_offset_xy": [
+        -0.001,
+        0.0
+      ],
+      "success": true,
+      "failure_reason": null,
+      "contact_acquired_step": 72,
+      "left_peak_force": 2.9752,
+      "right_peak_force": 2.9752,
+      "left_steady_force": 2.8658,
+      "right_steady_force": 2.8658,
+      "force_asymmetry": 0.0,
+      "payload_max_displacement_m": 4.5e-05,
+      "actuator_saturated": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "hold_duration_s": 2.2,
+      "physics_min_force_n": 0.545,
+      "target_force_n": 2.8
+    },
+    {
+      "trial": "y_plus_1mm",
+      "payload_offset_xy": [
+        0.0,
+        0.001
+      ],
+      "success": true,
+      "failure_reason": null,
+      "contact_acquired_step": 74,
+      "left_peak_force": 2.8887,
+      "right_peak_force": 3.0129,
+      "left_steady_force": 2.8426,
+      "right_steady_force": 2.8413,
+      "force_asymmetry": 0.00129,
+      "payload_max_displacement_m": 0.000118,
+      "actuator_saturated": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "hold_duration_s": 2.2,
+      "physics_min_force_n": 0.545,
+      "target_force_n": 2.8
+    },
+    {
+      "trial": "y_minus_1mm",
+      "payload_offset_xy": [
+        0.0,
+        -0.001
+      ],
+      "success": true,
+      "failure_reason": null,
+      "contact_acquired_step": 74,
+      "left_peak_force": 3.0129,
+      "right_peak_force": 2.8887,
+      "left_steady_force": 2.8413,
+      "right_steady_force": 2.8426,
+      "force_asymmetry": 0.00129,
+      "payload_max_displacement_m": 0.000118,
+      "actuator_saturated": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "hold_duration_s": 2.2,
+      "physics_min_force_n": 0.545,
+      "target_force_n": 2.8
+    }
+  ],
+  "n_pass": 5,
+  "n_total": 5,
+  "gate_passed": true
+}

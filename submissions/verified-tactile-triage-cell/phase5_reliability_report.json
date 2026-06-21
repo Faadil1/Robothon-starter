@@ -1,0 +1,214 @@
+{
+  "phase": "Phase 5 - Slip Detection and Recovery",
+  "thresholds": {
+    "baseline_slip_max_mm": 0.81,
+    "slip_detection_threshold_mm": 2.43,
+    "velocity_detection_threshold_mps": 0.01,
+    "force_asymmetry_threshold_n": 0.05
+  },
+  "disturbance": {
+    "force_n": 0.5,
+    "duration_steps": 50
+  },
+  "negative_controls": [
+    {
+      "trial": "neg_control_0_(0.0, 0.0)",
+      "expect_disturbance": false,
+      "final_state": "HOLD_NORMAL",
+      "disturbance_applied": false,
+      "slip_detected": false,
+      "detection_step": null,
+      "detection_latency_steps": null,
+      "slip_at_detection_mm": null,
+      "velocity_at_detection_mps": null,
+      "force_asymmetry_at_detection_n": null,
+      "max_wrist_slip_mm": 0.336,
+      "force_before_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_during_n": [
+        null,
+        null
+      ],
+      "force_after_n": [
+        2.8658,
+        2.8658
+      ],
+      "recovery_grip_target_n": null,
+      "recovery_duration_steps": null,
+      "payload_dropped": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "false_positive": false,
+      "false_negative": false
+    },
+    {
+      "trial": "neg_control_1_(0.001, 0.0)",
+      "expect_disturbance": false,
+      "final_state": "HOLD_NORMAL",
+      "disturbance_applied": false,
+      "slip_detected": false,
+      "detection_step": null,
+      "detection_latency_steps": null,
+      "slip_at_detection_mm": null,
+      "velocity_at_detection_mps": null,
+      "force_asymmetry_at_detection_n": null,
+      "max_wrist_slip_mm": 0.3365,
+      "force_before_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_during_n": [
+        null,
+        null
+      ],
+      "force_after_n": [
+        2.8658,
+        2.8658
+      ],
+      "recovery_grip_target_n": null,
+      "recovery_duration_steps": null,
+      "payload_dropped": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "false_positive": false,
+      "false_negative": false
+    },
+    {
+      "trial": "neg_control_2_(-0.001, 0.0)",
+      "expect_disturbance": false,
+      "final_state": "HOLD_NORMAL",
+      "disturbance_applied": false,
+      "slip_detected": false,
+      "detection_step": null,
+      "detection_latency_steps": null,
+      "slip_at_detection_mm": null,
+      "velocity_at_detection_mps": null,
+      "force_asymmetry_at_detection_n": null,
+      "max_wrist_slip_mm": 0.3365,
+      "force_before_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_during_n": [
+        null,
+        null
+      ],
+      "force_after_n": [
+        2.8658,
+        2.8658
+      ],
+      "recovery_grip_target_n": null,
+      "recovery_duration_steps": null,
+      "payload_dropped": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "false_positive": false,
+      "false_negative": false
+    }
+  ],
+  "injected_trials": [
+    {
+      "trial": "injected_0_(0.0, 0.0)",
+      "expect_disturbance": true,
+      "final_state": "RECOVERY_SUCCESS",
+      "disturbance_applied": true,
+      "slip_detected": true,
+      "detection_step": 150,
+      "detection_latency_steps": 0,
+      "slip_at_detection_mm": 0.2086,
+      "velocity_at_detection_mps": 0.000359,
+      "force_asymmetry_at_detection_n": 0.3305,
+      "max_wrist_slip_mm": 2.9082,
+      "force_before_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_during_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_after_n": [
+        2.8816,
+        2.8816
+      ],
+      "recovery_grip_target_n": 2.9499999999999997,
+      "recovery_duration_steps": 1047,
+      "payload_dropped": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "false_positive": false,
+      "false_negative": false
+    },
+    {
+      "trial": "injected_1_(0.001, 0.0)",
+      "expect_disturbance": true,
+      "final_state": "RECOVERY_SUCCESS",
+      "disturbance_applied": true,
+      "slip_detected": true,
+      "detection_step": 150,
+      "detection_latency_steps": 0,
+      "slip_at_detection_mm": 0.209,
+      "velocity_at_detection_mps": 0.000359,
+      "force_asymmetry_at_detection_n": 0.3304,
+      "max_wrist_slip_mm": 2.9029,
+      "force_before_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_during_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_after_n": [
+        2.8809,
+        2.8742
+      ],
+      "recovery_grip_target_n": 2.9499999999999997,
+      "recovery_duration_steps": 1047,
+      "payload_dropped": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "false_positive": false,
+      "false_negative": false
+    },
+    {
+      "trial": "injected_2_(-0.001, 0.0)",
+      "expect_disturbance": true,
+      "final_state": "RECOVERY_SUCCESS",
+      "disturbance_applied": true,
+      "slip_detected": true,
+      "detection_step": 150,
+      "detection_latency_steps": 0,
+      "slip_at_detection_mm": 0.209,
+      "velocity_at_detection_mps": 0.000359,
+      "force_asymmetry_at_detection_n": 0.3304,
+      "max_wrist_slip_mm": 2.905,
+      "force_before_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_during_n": [
+        2.8658,
+        2.8658
+      ],
+      "force_after_n": [
+        2.8745,
+        2.8806
+      ],
+      "recovery_grip_target_n": 2.9499999999999997,
+      "recovery_duration_steps": 1047,
+      "payload_dropped": false,
+      "nan_detected": false,
+      "unexpected_contacts": [],
+      "false_positive": false,
+      "false_negative": false
+    }
+  ],
+  "n_negative_pass": 3,
+  "n_negative_total": 3,
+  "n_injected_pass": 3,
+  "n_injected_total": 3,
+  "gate_passed": true
+}

@@ -1,0 +1,97 @@
+<mujoco model="verified_tactile_triage_cell">
+  <compiler angle="radian" />
+  <option timestep="0.001" gravity="0 0 -9.81" integrator="implicitfast"
+    cone="elliptic" solver="Newton" tolerance="1e-10" impratio="10" noslip_iterations="0" />
+
+  <default>
+    <geom friction="1.2 0.01 0.0001" />
+    <joint damping="2.0" />
+  </default>
+
+  <asset>
+    <texture type="2d" name="grid" builtin="checker" rgb1="0.2 0.3 0.4" rgb2="0.1 0.15 0.2"
+      width="512" height="512" />
+    <material name="table_mat" texture="grid" texrepeat="4 4" reflectance="0.05" />
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 2.5" dir="0 0 -1" diffuse="1 1 1" specular="0.2 0.2 0.2" />
+    <camera name="topdown" pos="0 0 1.8" euler="0 0 0" fovy="55" />
+    <camera name="angled" pos="-0.8 -1.0 1.0" xyaxes="0.8 -0.6 0  0.3 0.5 0.8" />
+
+    <!-- Table surface -->
+    <geom name="table" type="box" size="0.6 0.5 0.02" pos="0 0 -0.02" material="table_mat"
+      contype="1" conaffinity="8" />
+
+    <!-- Safe triage zone (green, visual marker only, no collision).
+         Positioned along the x-axis (reachable by wrist_x/wrist_z --
+         the wrist has no y-actuator), forward of the payload staging
+         position (x=-0.35), within the wrist's actual reachable range
+         (anchor -0.35 + range [-0.5,0.6] = world x [-0.85, 0.25]). -->
+    <geom name="triage_safe_zone" type="box" size="0.06 0.06 0.001" pos="0.1 0.0 0.0011"
+      rgba="0.15 0.95 0.25 0.75" contype="0" conaffinity="0" />
+
+    <!-- Contaminated / unsafe zone (red, visual marker only, no collision).
+         Positioned on the OPPOSITE side of staging from the safe zone, so
+         a normal safe-zone delivery path never has to cross it -- it is
+         only reached if a placement request specifically targets it. -->
+    <geom name="contaminated_zone" type="box" size="0.06 0.06 0.001" pos="-0.54 0.0 0.0011"
+      rgba="0.95 0.1 0.1 0.75" contype="0" conaffinity="0" />
+
+    <!-- Wrist: translates in x (horizontal), z (vertical), and yaw (lateral
+         alignment about z-axis). Carries the two-finger gripper. -->
+    <body name="wrist" pos="-0.35 0.0 0.1078">
+      <joint name="wrist_x" type="slide" axis="1 0 0" range="-0.5 0.6" damping="6.0" />
+      <joint name="wrist_z" type="slide" axis="0 0 1" range="-0.05 0.4" damping="6.0" />
+      <joint name="wrist_yaw" type="hinge" axis="0 0 1" range="-0.6 0.6" damping="2.0" />
+      <geom name="wrist_body_geom" type="box" size="0.025 0.06 0.025" rgba="0.3 0.3 0.35 1"
+        mass="0.5" contype="2" conaffinity="0" />
+
+      <!-- Left finger: single closing joint (slide, moves inward/outward in
+           local y), Phase 1 scope is single-joint-per-finger only. -->
+      <body name="left_finger" pos="0 0.05 -0.05">
+        <joint name="left_finger_close" type="slide" axis="0 1 0" range="-0.058 0.0"
+          damping="3.0" />
+        <geom name="left_finger_geom" type="box" size="0.012 0.012 0.05" rgba="0.15 0.55 1.0 1"
+          mass="0.05" contype="4" conaffinity="8" friction="0.9 0.01 0.0001" />
+        <site name="left_fingertip_site" type="box" size="0.016 0.016 0.052" pos="0 0 0"
+          rgba="0 0 0 0" />
+      </body>
+
+      <!-- Right finger: mirrored, single closing joint. -->
+      <body name="right_finger" pos="0 -0.05 -0.05">
+        <joint name="right_finger_close" type="slide" axis="0 1 0" range="0.0 0.058"
+          damping="3.0" />
+        <geom name="right_finger_geom" type="box" size="0.012 0.012 0.05" rgba="0.15 0.55 1.0 1"
+          mass="0.05" contype="4" conaffinity="8" friction="0.9 0.01 0.0001" />
+        <site name="right_fingertip_site" type="box" size="0.016 0.016 0.052" pos="0 0 0"
+          rgba="0 0 0 0" />
+      </body>
+    </body>
+
+    <!-- Payload: free body, the object to be triaged. -->
+    <body name="payload" pos="-0.35 0.0 0.035">
+      <joint name="payload_free" type="free" />
+      <geom name="payload_geom" type="box" size="0.018 0.018 0.018" rgba="1.0 0.8 0.05 1"
+        mass="0.05" contype="8" conaffinity="5" friction="0.9 0.01 0.0001" />
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="act_wrist_x" joint="wrist_x" kp="300" />
+    <position name="act_wrist_z" joint="wrist_z" kp="2500" />
+    <position name="act_wrist_yaw" joint="wrist_yaw" kp="2000" />
+    <position name="act_left_finger" joint="left_finger_close" kp="80" />
+    <position name="act_right_finger" joint="right_finger_close" kp="80" />
+  </actuator>
+
+  <!-- Passive telemetry sensors: fingertip touch (contact force magnitude)
+       and payload position/velocity tracking. Read-only, no effect on
+       control or dynamics. -->
+  <sensor>
+    <touch name="left_fingertip_touch" site="left_fingertip_site" />
+    <touch name="right_fingertip_touch" site="right_fingertip_site" />
+    <framepos name="payload_pos" objtype="body" objname="payload" />
+    <framelinvel name="payload_vel" objtype="body" objname="payload" />
+  </sensor>
+</mujoco>

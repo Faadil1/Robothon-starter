@@ -1,0 +1,30 @@
+Production scene confirmed: /home/wdecoded92/verified-tactile-triage/scene.xml
+
+[PASS] Phase 1 — scene_load_and_stability
+[PASS] Phase 2 — actuator_validation
+[PASS] Phase 3 — grasp_5_of_5
+[PASS] Phase 4 — lift_transport_5_of_5
+[PASS] Phase 5 — slip_detection_and_recovery
+[PASS] Phase 6 — triage_decision_and_placement
+[PASS] Phase 7 — signed_receipts
+
+OVERALL: PASS
+Report written to reliability_report.json
+
+==================================================
+VERIFIED TACTILE TRIAGE CELL — VALIDATION SUMMARY
+==================================================
+Production scene: /home/wdecoded92/verified-tactile-triage/scene.xml
+Timestamp: 2026-06-21T19:51:15.618372+00:00
+
+  [PASS] Phase 1: scene_load_and_stability
+  [PASS] Phase 2: actuator_validation
+  [PASS] Phase 3: grasp_5_of_5
+  [PASS] Phase 4: lift_transport_5_of_5
+  [PASS] Phase 5: slip_detection_and_recovery
+  [PASS] Phase 6: triage_decision_and_placement
+  [PASS] Phase 7: signed_receipts
+
+OVERALL: PASS
+==================================================
+EXIT_CODE=0

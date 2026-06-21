@@ -1,0 +1,128 @@
+{
+  "phase": "Phase 4 - Lift and Transport",
+  "trials": [
+    {
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "success": true,
+      "failure_reason": null,
+      "min_force_lift_n": [
+        2.8451,
+        2.8451
+      ],
+      "min_force_transport_n": [
+        2.8658,
+        2.8658
+      ],
+      "peak_force_n": 2.8659,
+      "max_relative_slip_mm": 0.8082,
+      "lift_height_m": 0.03943,
+      "transport_error_m": 6e-05,
+      "table_contact_during_airborne": false,
+      "unexpected_contacts": [],
+      "actuator_saturated": false,
+      "nan_detected": false
+    },
+    {
+      "offset": [
+        0.001,
+        0.0
+      ],
+      "success": true,
+      "failure_reason": null,
+      "min_force_lift_n": [
+        2.8451,
+        2.8451
+      ],
+      "min_force_transport_n": [
+        2.8658,
+        2.8658
+      ],
+      "peak_force_n": 2.8659,
+      "max_relative_slip_mm": 0.8095,
+      "lift_height_m": 0.03943,
+      "transport_error_m": 6.3e-05,
+      "table_contact_during_airborne": false,
+      "unexpected_contacts": [],
+      "actuator_saturated": false,
+      "nan_detected": false
+    },
+    {
+      "offset": [
+        -0.001,
+        0.0
+      ],
+      "success": true,
+      "failure_reason": null,
+      "min_force_lift_n": [
+        2.8451,
+        2.8451
+      ],
+      "min_force_transport_n": [
+        2.8658,
+        2.8658
+      ],
+      "peak_force_n": 2.8659,
+      "max_relative_slip_mm": 0.8089,
+      "lift_height_m": 0.03943,
+      "transport_error_m": 5.7e-05,
+      "table_contact_during_airborne": false,
+      "unexpected_contacts": [],
+      "actuator_saturated": false,
+      "nan_detected": false
+    },
+    {
+      "offset": [
+        0.0,
+        0.001
+      ],
+      "success": true,
+      "failure_reason": null,
+      "min_force_lift_n": [
+        2.8183,
+        2.8199
+      ],
+      "min_force_transport_n": [
+        2.8286,
+        2.8255
+      ],
+      "peak_force_n": 2.8593,
+      "max_relative_slip_mm": 0.7705,
+      "lift_height_m": 0.03942,
+      "transport_error_m": 0.000127,
+      "table_contact_during_airborne": false,
+      "unexpected_contacts": [],
+      "actuator_saturated": false,
+      "nan_detected": false
+    },
+    {
+      "offset": [
+        0.0,
+        -0.001
+      ],
+      "success": true,
+      "failure_reason": null,
+      "min_force_lift_n": [
+        2.8199,
+        2.8183
+      ],
+      "min_force_transport_n": [
+        2.8255,
+        2.8286
+      ],
+      "peak_force_n": 2.8593,
+      "max_relative_slip_mm": 0.7705,
+      "lift_height_m": 0.03942,
+      "transport_error_m": 0.000127,
+      "table_contact_during_airborne": false,
+      "unexpected_contacts": [],
+      "actuator_saturated": false,
+      "nan_detected": false
+    }
+  ],
+  "n_pass": 5,
+  "n_total": 5,
+  "gate_passed": true
+}

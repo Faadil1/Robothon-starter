@@ -1,0 +1,3 @@
+Encoding 2295 frames (~76.5s) to demo.mp4...
+Done. demo.mp4 (2295 frames @ 30fps = 76.5s)
+EXIT_CODE=0
